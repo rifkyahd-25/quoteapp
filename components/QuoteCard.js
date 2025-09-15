@@ -385,7 +385,7 @@ export default function QuoteCard({
       <LinearGradient colors={[bgColor, "#fff0e0"]} style={styles.card}>
         <Text style={styles.quoteIcon}>“</Text>
         <Text style={[styles.quote, { color: textColor }]}>{quote}</Text>
-        <Text style={[styles.author, { color: textColor }]}>{author}</Text>
+        <Text style={[styles.author, { color: textColor }]}>{author ? author.toLowerCase() : ""}</Text>
 
         <View style={styles.actions}>
           <TouchableOpacity style={styles.favButton} onPress={onToggleFavorite}>
@@ -438,7 +438,7 @@ export default function QuoteCard({
               fontStyle: "italic",
             }}
           >
-            - {author}
+            - {author ? author.toLowerCase() : ""}
           </Text>
         </LinearGradient>
       </ViewShot>
@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
     left: 20,
   },
   quote: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: "600",
     fontStyle: "italic",
     textAlign: "center",
@@ -535,9 +535,9 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
-    marginTop: 25,
+        justifyContent: "space-between",
+         width: "80%",
+        marginTop: 25.
   },
   favButton: {
     flexDirection: "row",
