@@ -752,9 +752,9 @@ export default function HomeScreen() {
     
   </LinearGradient>
 </View> */}
-<View style={styles.todayContainer}>
-<Text style={styles.todayLabel}> Today&apos;s Quote </Text>
-</View>
+      <View style={styles.todayContainer}>
+        <Text style={[styles.todayLabel, {fontFamily: "Lora"}]}> Today&apos;s Quote </Text>
+      </View>
       {/* Quote Card (inside ViewShot for sharing + download) */}
       <Animated.View style={{ opacity: fadeAnim }}>
         <ViewShot ref={viewShotRef} options={{ format: "png", quality: 1 }}>
@@ -765,7 +765,7 @@ export default function HomeScreen() {
             style={styles.card}
           >
             <Text style={styles.quoteMark}>“</Text>
-            <Text style={[styles.quote, { color: theme.text }]}>
+            <Text style={[styles.quote, { color: theme.text, fontFamily: "Lora" }]}>
               "{quote.quote}"
             </Text>
             <Text style={styles.author}>- {quote.author}</Text>
@@ -775,13 +775,22 @@ export default function HomeScreen() {
 
       {/* Buttons */}
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.nextBtn} onPress={nextQuote}>
+        <TouchableOpacity
+          style={[styles.nextBtn, { backgroundColor: theme.smcardtextcolor }]}
+          onPress={nextQuote}
+        >
           <Text style={styles.nextText}>Next</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.shareBtn} onPress={shareQuote}>
+        <TouchableOpacity
+          style={[styles.shareBtn, { backgroundColor: theme.smcardtextcolor }]}
+          onPress={shareQuote}
+        >
           <Ionicons name="share-social-outline" size={24} color="#fff" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.downloadBtn} onPress={downloadAsImage}>
+        <TouchableOpacity
+          style={[styles.downloadBtn, { backgroundColor: theme.active }]}
+          onPress={downloadAsImage}
+        >
           <Ionicons name="download-outline" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -806,8 +815,7 @@ const styles = StyleSheet.create({
   todayContainer: {
     marginTop: 10,
     marginBottom: 30,
-    alignItems: "center"
-    
+    alignItems: "center",
   },
   todayGradient: {
     paddingHorizontal: 30,
@@ -826,10 +834,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF8F0",
   },
   todayLabel: {
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: "700",
     color: "#fff",
-    textAlign: "left",
+    textAlign: "center",
+   
   },
   card: {
     width: width * 0.9,
@@ -847,10 +856,11 @@ const styles = StyleSheet.create({
   },
   quoteMark: {
     fontSize: 60,
-    color: "rgba(0,0,0,0.05)",
-    position: "absolute",
-    top: 20,
-    left: 20,
+  fontFamily: "Lora", // replace "tara" with "Lora"
+  color: "rgba(0,0,0,0.05)",
+  position: "absolute",
+  top: 20,
+  left: 20,
   },
   quote: {
     fontSize: 22,
@@ -859,7 +869,7 @@ const styles = StyleSheet.create({
     color: "#333",
     lineHeight: 32,
   },
-  author: { fontSize: 16, fontStyle: "italic", color: "#666", marginTop: 25 },
+  author: { fontSize: 16, fontStyle: "italic",fontFamily: "Lora", color: "#666", marginTop: 25 },
   buttonsContainer: {
     flexDirection: "row",
     width: width * 0.9,

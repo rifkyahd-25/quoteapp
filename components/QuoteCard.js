@@ -411,7 +411,7 @@ export default function QuoteCard({
             style={[
               styles.favButton,
               {
-                backgroundColor: theme.mode === "dark" ? "#1e293b" : "#ffe6f0",
+                backgroundColor: theme.mode === "dark" ? "#01675b" : "#ffe6f0",
               },
             ]}
             onPress={onToggleFavorite}
@@ -419,9 +419,9 @@ export default function QuoteCard({
             <Ionicons
               name={isFavorite ? "heart" : "heart-outline"}
               size={20}
-              color={theme.primary}
+              color={theme.smcardtextcolor}
             />
-            <Text style={[styles.favText, { color: theme.primary }]}>
+            <Text style={[styles.favText, { color: theme.active }]}>
               {isFavorite ? "Remove" : "Add"}
             </Text>
           </TouchableOpacity>
@@ -431,13 +431,13 @@ export default function QuoteCard({
             style={[
               styles.downloadButton,
               {
-                backgroundColor: theme.mode === "dark" ? "#1e293b" : "#e0f7ff",
+                backgroundColor: theme.mode === "dark" ? "#01675b" : "#e0f7ff",
               },
             ]}
             onPress={() => setDownloadModalVisible(true)}
           >
-            <Ionicons name="download-outline" size={20} color={theme.primary} />
-            <Text style={[styles.downloadText, { color: theme.primary }]}>
+            <Ionicons name="download-outline" size={20} color={theme.active} />
+            <Text style={[styles.downloadText, { color: theme.active }]}>
               Download
             </Text>
           </TouchableOpacity>

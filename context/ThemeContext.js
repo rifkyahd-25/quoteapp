@@ -32,6 +32,7 @@ const LightTheme = {
     grtwo: "#4338ca",            // Deeper indigo gradient end
     smcardtextcolor: "#a78bfa",  // Soft violet text
     active: "#03dac5", 
+    activeligter: "#A7FFF5",
     bigcard: "#252525"          // Teal accent for active states
   };
   

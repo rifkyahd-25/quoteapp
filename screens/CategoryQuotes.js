@@ -456,7 +456,7 @@ import QuoteCard from "../components/QuoteCard";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { ThemeContext } from "../context/ThemeContext";
-import { useFonts } from "expo-font";
+// import { useFonts } from "expo-font";
 
 export default function CategoryQuotes({ route }) {
   const { category } = route.params;
@@ -472,10 +472,10 @@ export default function CategoryQuotes({ route }) {
   const flatListRef = useRef();
 
   const [loadingQuotes, setLoadingQuotes] = useState(true);
-const [fontsLoaded] = useFonts({
-  Lora: require("../assets/fonts/Lora-VariableFont_wght.ttf"),
-});
-const [ready, setReady] = useState(false); // 👈 new state
+// const [fontsLoaded] = useFonts({
+//   Lora: require("../assets/fonts/Lora-VariableFont_wght.ttf"),
+// });
+ const [ready, setReady] = useState(false); // 👈 new state
 
 useEffect(() => {
   const loadQuotes = async () => {
@@ -488,10 +488,10 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  if (!loadingQuotes && fontsLoaded) {
+  if (!loadingQuotes) {
     setReady(true); // 👈 only render UI when everything is ready
   }
-}, [loadingQuotes, fontsLoaded]);
+}, [loadingQuotes]);
 
 useEffect(() => {
   const filtered = quotesData.filter((q) => q.category.includes(category));
