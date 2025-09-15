@@ -49,7 +49,7 @@
 //     </Tab.Navigator>
 //   );
 // }
-import React from "react";
+import React, { useContext, useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons"; // <-- import icons
@@ -58,6 +58,10 @@ import HomeScreen from "../screens/HomeScreen";
 import Favorites from "../screens/Favorites";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryQuotes from "../screens/CategoryQuotes";
+import SettingsScreen from "../screens/SettingsScreen";
+import { ThemeContext } from "../context/ThemeContext";
+import LoadingScreen from "../screens/LoadingScreen";
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,31 +77,41 @@ function QuotesStack() {
 }
 
 export default function AppNavigator() {
+  const { theme } = useContext(ThemeContext);
+  const [isLoading, setIsLoading] = useState(true); 
+
+
+  if (isLoading) {
+    return <LoadingScreen onFinish={() => setIsLoading(false)} />;
+  }
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+    screenOptions={({ route }) => ({
+      headerShown: false,
+      tabBarStyle: { backgroundColor: theme.background },
+      tabBarActiveTintColor: theme.active,
+      tabBarInactiveTintColor: theme.textMuted,
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
 
-          if (route.name === "Home") {
-            iconName = focused ? "home" : "home-outline";
-          } else if (route.name === "categry") {
-            iconName = focused ? "list" : "list-outline";
-          } else if (route.name === "Favorites") {
-            iconName = focused ? "heart" : "heart-outline";
-          }
+        if (route.name === "Home") {
+          iconName = focused ? "home" : "home-outline";
+        } else if (route.name === "categry") {
+          iconName = focused ? "list" : "list-outline";
+        } else if (route.name === "Favorites") {
+          iconName = focused ? "heart" : "heart-outline";
+        } else if (route.name === "Settings") {
+          iconName = focused ? "settings" : "settings-outline";
+        }
 
-          // Return the icon component
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="categry" component={QuotesStack} />
-      <Tab.Screen name="Favorites" component={Favorites} />
-    </Tab.Navigator>
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+    })}
+  >
+    <Tab.Screen name="Home" component={HomeScreen} />
+    <Tab.Screen name="categry" component={QuotesStack} />
+    <Tab.Screen name="Favorites" component={Favorites} />
+    <Tab.Screen name="Settings" component={SettingsScreen} />
+  </Tab.Navigator>
   );
 }
